@@ -15,12 +15,15 @@ You'll need to add line 20 and 44
 
 ### Commands 
 These commands are run against the basic greeter service
+These command were executed agains the service while debugging using kestrel and not running in the docker container
 
-#### giturl
+### giturl
+Get the install from [here](https://github.com/fullstorydev/grpcurl/releases)
 Request:
 ```
 grpcurl -d "{\"name\": \"World\"}" localhost:5001 greet.Greeter/SayHello
 ```
+note the double quotes this is for some cmd weirdness on windows.
 
 Response:
 ```
@@ -28,5 +31,9 @@ Response:
   "message": "Hello World"
 }
 ```
-note the double quotes this is for some cmd weirdness on windows.
+### gitui
 
+Get the install from [here](https://github.com/fullstorydev/grpcui/releases)
+
+```
+```
