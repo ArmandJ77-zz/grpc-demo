@@ -11,6 +11,7 @@ You will need to setup [grpcReflection](https://github.com/grpc/grpc/blob/master
 
 You'll need to add line 20 and 44
 
+![image](https://github.com/ArmandJ77/grpc-demo/blob/main/Images/Setup-Grpc-Reflection.PNG)
 
 ### Commands 
 These commands are run against the basic greeter service
