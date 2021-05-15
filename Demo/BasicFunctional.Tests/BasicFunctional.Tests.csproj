@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Grpc.Net.Client" Version="2.37.0" />
+		<PackageReference Include="Microsoft.AspNetCore.TestHost" Version="5.0.6" />
+		<PackageReference Include="NUnit" Version="3.12.0" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Demo\Demo.csproj" />
+	</ItemGroup>
+
+</Project>
