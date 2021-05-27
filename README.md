@@ -17,13 +17,16 @@ You'll need to add line 20 and 44
 These commands are run against the basic greeter service
 These command were executed agains the service while debugging using kestrel and not running in the docker container
 
-### giturl
+### gRPCurl
 Get the install from [here](https://github.com/fullstorydev/grpcurl/releases)
+
+cd into the directory where you placed the exe and run the below command.
+
 Request:
 ```
 grpcurl -d "{\"name\": \"World\"}" localhost:5001 greet.Greeter/SayHello
 ```
-note the double quotes this is for some cmd weirdness on windows.
+Note: Double quotes this is for some cmd weirdness on windows.
 
 Response:
 ```
@@ -31,9 +34,11 @@ Response:
   "message": "Hello World"
 }
 ```
-### gitui
+### gRPCUI
 
 Get the install from [here](https://github.com/fullstorydev/grpcui/releases)
+
+cd into the directory where you placed the exe and run the below command to access the UI.
 
 ```
 grpcui localhost:5001
