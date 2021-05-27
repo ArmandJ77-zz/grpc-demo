@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "Server.Services";
+
+package crud;
+
+service Crud{
+	rpc CreateItem (CreateRequest) returns (CreateResponse);
+}
+
+message CreateRequest{
+	string Name = 1;
+}
+
+message CreateResponse{
+	int32 Id = 1;
+}

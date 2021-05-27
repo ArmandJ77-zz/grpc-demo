@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using System;
+using System.Linq;
+using System.Net.Http;
+using Database;
+using Database.Configuration;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Net.Http;
 
-namespace Functional.Tests.Helpers
+namespace Tests.Functional.Helpers
 {
     public delegate void LogMessage(LogLevel logLevel, string categoryName, EventId eventId, string message, Exception exception);
 
@@ -32,6 +36,39 @@ namespace Functional.Tests.Helpers
                 {
                     initialConfigureServices?.Invoke(services);
                     services.AddSingleton<ILoggerFactory>(LoggerFactory);
+
+                    var descriptor = services.SingleOrDefault(
+                        d => d.ServiceType ==
+                             typeof(DbContextOptions<DemoDbContext>));
+
+                    services.Remove(descriptor);
+
+                    services.AddDbContext<DemoDbContext>(options =>
+                    {
+                        options.UseInMemoryDatabase("InMemoryDbForTesting");
+                    });
+
+                    var sp = services.BuildServiceProvider();
+
+                    using (var scope = sp.CreateScope())
+                    {
+                        var scopedServices = scope.ServiceProvider;
+                        var db = scopedServices.GetRequiredService<DemoDbContext>();
+
+                        db.Database.EnsureCreated();
+
+                        //try
+                        //{
+                        //    Utilities.InitializeDbForTests(db);
+                        //}
+                        //catch (Exception ex)
+                        //{
+                        //    logger.LogError(ex, "An error occurred seeding the " +
+                        //                        "database with test messages. Error: {Message}", ex.Message);
+                        //}
+                    }
+                    
+                    services.AddDbContext<DemoDbContext>();
                 })
                 .ConfigureWebHostDefaults(webHost =>
                 {

@@ -1,0 +1,17 @@
+# Specify the compose format the file conforms to
+version: "3"
+# Specify the set of services your app is composed of
+services:
+# This is the db service
+  db:
+# The image to pull from docker hub
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    hostname: gRPCDemo
+    container_name: gRPCDemo
+# Maps the HOST port of 1433 to the container port of 1433 (the default sql port)
+    ports:
+      - "1433:1433"
+# Set environment variables 
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password01

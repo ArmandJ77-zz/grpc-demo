@@ -1,18 +1,19 @@
-﻿using Functional.Tests.Helpers;
-using Grpc.Net.Client;
+﻿using Grpc.Net.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
+using Server;
 using System;
+using Tests.Functional.Helpers;
 
-namespace Functional.Tests
+namespace Tests.Functional
 {
     public class TestBase
     {
         private GrpcChannel? _channel;
         private IDisposable? _testContext;
 
-        protected GrpcTestFixture<Demo.Startup> Fixture { get; private set; } = default!;
+        protected GrpcTestFixture<Startup> Fixture { get; private set; } = default!;
 
         protected ILoggerFactory LoggerFactory => Fixture.LoggerFactory;
 
@@ -34,7 +35,7 @@ namespace Functional.Tests
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            Fixture = new GrpcTestFixture<Demo.Startup>(ConfigureServices);
+            Fixture = new GrpcTestFixture<Startup>(ConfigureServices);
         }
 
         [OneTimeTearDown]

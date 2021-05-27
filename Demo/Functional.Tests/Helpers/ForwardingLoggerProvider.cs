@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
+using Microsoft.Extensions.Logging;
 
-namespace Functional.Tests.Helpers
+namespace Tests.Functional.Helpers
 {
     internal class ForwardingLoggerProvider : ILoggerProvider
     {

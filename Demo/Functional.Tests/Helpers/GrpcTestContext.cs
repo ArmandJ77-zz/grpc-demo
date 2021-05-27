@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Threading;
 using Microsoft.Extensions.Logging;
 
-namespace Functional.Tests.Helpers
+namespace Tests.Functional.Helpers
 {
     internal class GrpcTestContext<TStartup> : IDisposable where TStartup : class
     {
