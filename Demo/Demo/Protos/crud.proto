@@ -6,6 +6,7 @@ package crud;
 
 service Crud{
 	rpc CreateItem (CreateRequest) returns (CreateResponse);
+	rpc GetById (GetItemByIdRequest) returns (GetItemResponse);
 }
 
 message CreateRequest{
@@ -14,4 +15,13 @@ message CreateRequest{
 
 message CreateResponse{
 	int32 Id = 1;
+}
+
+message GetItemByIdRequest{
+	int32 Id = 1;
+}
+
+message GetItemResponse {
+	int32 Id = 1;
+	string Name = 2;
 }

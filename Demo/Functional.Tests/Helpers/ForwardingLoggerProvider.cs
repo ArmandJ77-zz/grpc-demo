@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using System;
 
 namespace Tests.Functional.Helpers
 {
@@ -13,9 +13,7 @@ namespace Tests.Functional.Helpers
         }
 
         public ILogger CreateLogger(string categoryName)
-        {
-            return new ForwardingLogger(categoryName, _logAction);
-        }
+        => new ForwardingLogger(categoryName, _logAction);
 
         public void Dispose()
         {
@@ -33,14 +31,10 @@ namespace Tests.Functional.Helpers
             }
 
             public IDisposable? BeginScope<TState>(TState state)
-            {
-                return null;
-            }
+                => null;
 
             public bool IsEnabled(LogLevel logLevel)
-            {
-                return true;
-            }
+                => true;
 
             public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
             {

@@ -27,7 +27,24 @@ namespace Server.Services
             await _demoDbContext.AddAsync(entity);
             await _demoDbContext.SaveChangesAsync();
 
-            return new CreateResponse { Id = entity.Id};
+            return new CreateResponse { Id = entity.Id };
+        }
+
+        public override async Task<GetItemResponse> GetById(GetItemByIdRequest request, ServerCallContext context)
+        {
+            _logger.LogInformation($"Get By Id Request Received with Id: {request.Id}");
+
+            var result = await _demoDbContext.Items.FindAsync(request.Id);
+
+            if (result is not null)
+                return new GetItemResponse
+                {
+                    Id = result.Id,
+                    Name = result.Name
+                };
+
+            _logger.LogInformation($"Item not found with Id: {request.Id}");
+            return new GetItemResponse();
         }
     }
 }

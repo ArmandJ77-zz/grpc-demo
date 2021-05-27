@@ -1,14 +1,16 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Diagnostics;
 using System.Threading;
-using Microsoft.Extensions.Logging;
 
 namespace Tests.Functional.Helpers
 {
     internal class GrpcTestContext<TStartup> : IDisposable where TStartup : class
     {
         private readonly ExecutionContext _executionContext;
+
         private readonly Stopwatch _stopwatch;
+        
         private readonly GrpcTestFixture<TStartup> _fixture;
 
         public GrpcTestContext(GrpcTestFixture<TStartup> fixture)
